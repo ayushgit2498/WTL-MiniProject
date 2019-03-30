@@ -11,6 +11,26 @@ var {Student} = require(process.cwd() + '/Models/student');
 
 
 module.exports = function(app){
+
+    const redirectlogin = (req,res,next)=>{
+        console.log(req.session);
+        
+        if (!req.session.eno){
+            res.redirect('/bh/logina');
+        }   
+        else{
+            next();
+        }
+    }
+    const redirecthome = (req,res,next)=>{
+        if(req.session.eno){
+            res.redirect('/bh/homea');
+        }
+        else{
+            next();
+        }
+    }
+
     app.use('/public',express.static('public')); //__dirname - path of root directory //we can directly access pages as /name.html
     app.use(express.static(__dirname + '/public'));
 
@@ -22,11 +42,18 @@ module.exports = function(app){
     app.set('view engine', 'hbs');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    const SESS_NAME = 'sid'
     app.use(session({
-        secret:'examlogin'
-    }))
+        secret:'examlogin',
+        name:SESS_NAME,    //To-do Destructure secret,SESS_NAME from process.env
+        saveUninitialized:false,
+        cookie:{
+            sameSite: true,
+            maxAge:1000*60*60*5
+        }
+    }));
 
-    app.post(alias+'/insert',(req,res)=>{
+    app.post(alias+'/register',redirecthome,(req,res)=>{        //To-do  first check of eligibility no
         console.log('entered');
         console.log(req);
         
@@ -40,55 +67,20 @@ module.exports = function(app){
 
         s.save().then((result)=>{
             console.log('Registered Successfully');
-            res.render('index',{Name:result.name});
+            //res.render('index',{Name:result.name});
+            req.session.emailid =  req.body.emailid;
+            req.session.eno = result.eno;
+            return res.redirect('/bh/homea');
         },(err)=>{
             console.log('Error Saving student');
             res.status(200).send();
         });
     });
 
-    app.get(alias+'/login',(req,res)=>{
-        res.render('login',{check:true});
-    });
-    app.post(alias+'/login',(req,res)=>{
-        Student.find({"emailid":req.body.emailid,"password":req.body.password}).then((docs)=>{
-            if(!docs.length){
-                res.render('login',{check:false});
-            }
-            else{
-                req.session.emailid =  req.body.emailid;
-                req.session.password = req.body.password;
-                res.render('logout');
-            }
-        },(err)=>{
-            console.log(err);
-            
-        });
-        
-        //res.render('index',{Name:'login'})
-    });
-    app.get(alias+'/logged',(req,res)=>{
-        if(req.session.emailid){
-            res.render('sample',{Name:req.session.emailid});
-        }
-        else{
-            res.send({
-                msg:"Please login"
-            })
-        }
-    });
-    app.post(alias+'/logout',(req,res)=>{
-        req.session.destroy(function(err){
-            if(err)
-                res.negotiate(err);
-            else
-                res.send("Logged out successfully")   
-        })
-    });
-    app.get(alias+'/register',(req,res)=>{
+    app.get(alias+'/register',redirecthome,(req,res)=>{
         console.log('register');
         
-        res.render('registration2',{});
+        res.render('registration',{});
     });
 
 };
