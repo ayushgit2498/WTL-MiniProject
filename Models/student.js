@@ -1,0 +1,87 @@
+const mongoose = require('mongoose');
+
+var studentSchema = new mongoose.Schema({
+    eno:{
+        type:String,
+        required:true,
+    },
+    name:{
+        type:String
+    },
+    mName:{
+        type:String
+    },
+    dept:{
+        type:String
+    },
+    clgName:{
+        type:String
+    },
+    gender:{
+        type:String
+    },
+    dob:{
+        type:String
+    },
+    state:{
+        type:String
+    },
+    address:{
+        type:String
+    },
+    phoneNo:{
+        type:Number
+    },
+    year:{
+        type:Number
+    },
+    sem:{
+        type:Number
+    },
+    audit:{
+        type:String,
+        default:'none'
+    },
+    sem1:{
+        type:Boolean,
+        default:false
+    },
+    sem2:{
+        type:Boolean,
+        default:false
+    },
+    sem3:{
+        type:Boolean,
+        default:false
+    },
+    sem4:{
+        type:Boolean,
+        default:false
+    },
+    sem5:{
+        type:Boolean,
+        default:false
+    },
+    sem6:{
+        type:Boolean,
+        default:false
+    },
+    sem7:{
+        type:Boolean,
+        default:false
+    },
+    sem8:{
+        type:Boolean,
+        default:false
+    },
+    emailid:{
+        type:String
+    },
+    password:{
+        type:String
+    }
+});
+
+var Student = new mongoose.model('Student',studentSchema);
+
+module.exports = {Student}

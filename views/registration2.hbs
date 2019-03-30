@@ -1,0 +1,206 @@
+<html>
+	<head>
+
+		<link rel="stylesheet" href="css/register.css">
+
+		<script>
+			function funcSubmit(){
+				alert("Your response has been submitted!!");
+			}
+
+			function validateForm() {
+				  var eno = document.forms["myForm"]["eno"];
+				  var name = document.forms["myForm"]["name"];
+				  var motherName = document.forms["myForm"]["mName"];
+				  var address = document.forms["myForm"]["address"];
+				  var state = document.forms["myForm"]["state"];
+				  var clgName = document.forms["myForm"]["clgName"];
+				  var phoneNo = document.forms["myForm"]["phoneNo"];
+				  var dbo = document.forms["myForm"]["dob"];
+				  var email = document.forms["myForm"]["emailid"];
+				  var password = document.forms["myForm"]["password"];
+				    if (eno.value == "")                                  
+				    { 
+				        window.alert("Please enter your Eligibility No."); 
+				        eno.focus(); 
+				        return false; 
+				    } 
+					if (name.value == "")                                  
+				    { 
+				        window.alert("Please enter your name."); 
+				        name.focus(); 
+				        return false; 
+				    } 
+				    if (motherName.value == "")                                  
+				    { 
+				        window.alert("Please enter your motherName."); 
+				        motherName.focus(); 
+				        return false; 
+				    } 
+				   
+				    if (address.value == "")                               
+				    { 
+				        window.alert("Please enter your address."); 
+				        address.focus(); 
+				        return false; 
+				    }
+
+				    if (state.value == "")                               
+				    { 
+				        window.alert("Please enter state."); 
+				        state.focus(); 
+				        return false; 
+				    }
+				    if (clgName.value == "")                               
+				    { 
+				        window.alert("Please enter your College Name."); 
+				        clgName.focus(); 
+				        return false; 
+				    }
+				    if (phoneNo.value == "")                               
+				    { 
+				        window.alert("Please enter your Phone Number."); 
+				        phoneNo.focus(); 
+				        return false; 
+				    }
+				    if (dbo.value == "")                               
+				    { 
+				        window.alert("Please enter your date of birth."); 
+				        dbo.focus(); 
+				        return false; 
+				    }
+				    
+				    if (email.value.indexOf("@", 0) < 0)                 
+				    { 
+				        window.alert("Please enter a valid e-mail address."); 
+				        email.focus(); 
+				        return false; 
+				    } 
+				    if (email.value.indexOf(".", 0) < 0)                 
+				    { 
+				        window.alert("Please enter a valid e-mail address."); 
+				        email.focus(); 
+				        return false; 
+				    }
+				    if (password.value == "")                               
+				    { 
+				        window.alert("Please enter your assigned password."); 
+				        password.focus(); 
+				        return false; 
+				    }
+
+				}
+			
+			
+		</script>
+	</head>
+	<body bgcolor="#00BCD4">
+
+		<header>
+		<ul>
+			<li style="margin-left: 15%;"><a href="#">REGISTER</a></li>
+			<li><a href="blank.html">LOGIN</a></li>
+			<li><a href="blank.html">RESULTS</a></li>
+			<li><a href="timetable.xml">TIMETABLE</a></li>
+			<li><a href="blank.html">SYLLABUS</a></li>
+			<li><a href="blank.html">CONTACT</a></li>
+			<li><a href="blank.html">ABOUT US</a></li>
+		</ul>
+		</header>
+		<div id="outline">
+			<form id="formid" name="myForm" action="/kr/insert" onsubmit="return validateForm()" method="post">
+
+				<p class="oneline">Eligibility No*:</p>
+				<input class="inputIndentation" type="text" name="eno">
+				<br>
+
+				<p class="oneline">Name*:</p>
+				<input class="inputIndentation" type="text" name="name">
+				<br>
+				
+				<p class="oneline">Mother's Name*:</p>
+				<input class="inputIndentation" type="text" name="mName">
+				<br>
+				
+				<p class="oneline">Address*:</p>
+				<input class="inputIndentation" type="Address" name="address">
+				<br>
+
+				<p class="oneline">State*:</p>
+				<input class="inputIndentation" type="text" name="state">
+				<br>
+
+				<p class="oneline">College Name*:</p>
+				<input class="inputIndentation" type="text" name="clgName">
+				<br>
+
+				<p class="oneline">Phone Number*:</p>
+				<input class="inputIndentation" type="text" name="phoneNo">
+				<br>
+
+				<p class="oneline">DOB*:</p>
+				<input class="inputIndentation" type="text" name="dob">
+				<br>
+
+
+				<p class="oneline">Sex*:</p>
+				<input class="inputIndentation" type="radio" name="gender" value="Male" checked="true"> Male<br>
+  				<input class="inputIndentation" type="radio" name="gender" value="Female"> Female<br>
+ 				<input class="inputIndentation" type="radio" name="gender" value="other"> Other<br>
+
+ 				<p class="dropdown">Course Name*:</p>
+ 				 <select name="dept">
+ 				 	<div style="margin-left: 200px;">
+    					<option value="Computer Engineering">Computer Engineering</option>
+   						<option value="EnTc Engineering">EnTc Engineering</option>
+   						<option value="IT Engineering">IT Engineering</option>
+   					</div>	 
+ 				 </select>
+ 				 <br>
+
+ 				 <p class="dropdown">Year of Study*:</p>
+ 				 <select name="year">
+ 				 	<div style="margin-left: 200px;">
+    					<option value=1>First Year</option>
+   						<option value=2>Second Year</option>
+   						<option value=3>Third Year</option>
+   						<option value=4>Final Year</option>
+   					</div>	 
+ 				 </select>
+ 				 <br> 
+
+ 				 <p class="dropdown">Semester*:</p>
+ 				 <select name="sem">
+ 				 	<div style="margin-left: 200px;">
+    					<option value=1>First</option>
+   						<option value=2>Second</option>
+   						<option value=3>Third</option>
+   						<option value=4>Four</option>
+   						<option value=5>Five</option>
+   						<option value=6>Six</option>
+   						<option value=7>Seven</option>
+   						<option value=8>Eight</option>
+   					</div>	 
+ 				 </select>
+ 				 <br> 
+ 				
+				<br>
+ 				 <p class="oneline">Email*:</p>
+				 <input class="inputIndentation" type="Email" name="emailid">
+				 <br>
+				 <p class="oneline">Password*:</p>
+				 <input class="inputIndentation" type="Password" name="password">
+				 <br>
+				<!-- <p class="oneline">Confirm Password*:</p>
+				 <input class="inputIndentation" type="Password" name="ConfirmPassword">
+				 <br><br>-->
+
+				<!--<button class="inputIndentation1" type="reset" onclick="funcReset()" value="Reset" style="padding: 10px;font-size: 15px;">Reset</button>-->
+				<button class="inputIndentation" type="submit" value="Submit" style="padding: 10px;font-size: 15px;">Submit</button>
+			</form>
+
+		</div>
+
+
+	</body>
+</html>
