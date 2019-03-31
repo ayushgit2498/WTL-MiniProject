@@ -1,0 +1,77 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" href="/css/timetable.css">
+
+	</head>
+	<body bgcolor="#00BCD4">
+		
+		<header>
+
+		<div id="outline" style="margin-top: 5%">
+			<div class="header">
+				{{#if filled}}
+				<form action="/kr/admin/savetimetable" method="post">
+				{{else}}
+				<form action="/kr/admin/timetable" method="post">
+				{{/if}}
+					<div class="form-box">
+						<select name="dept" class="search-field course">
+ 				 			<div>
+    							<option value="Comp">Computer Engineering</option>
+   								<option value="Entc">EnTc Engineering</option>
+   								<option value="IT">IT Engineering</option>
+   							</div>	 
+ 						 </select>
+ 						 <select name="sem" class="search-field location">
+ 				 			<div>
+    							<option value=1>Sem One</option>
+   								<option value=2>Sem Two</option>
+   								<option value=3>Sem Three</option>
+   								<option value=4>Sem Four</option>
+   								<option value=5>Sem Five</option>
+   								<option value=6>Sem Six</option>
+   								<option value=7>Sem Seven</option>
+   								<option value=8>Sem Eight</option>
+   							</div>	 
+ 						 </select>
+						  {{#unless filled }}
+					<button class="search-btn" type="submit">Add</button>
+						{{/unless}}
+					</div>
+
+			</div>
+				<br><br><br>
+				{{#if filled}}
+					<label for="s1">{{sName1}}</label>
+					<input type="hidden" name="sn1" value={{sName1}}>
+					<input type="date" name="s1" style="margin-left: 50px"><br><br>
+
+					<label for="s2">{{sName2}}</label>
+					<input type="hidden" name="sn2" value={{sName2}}>
+					<input type="date" name="s2" style="margin-left: 50px"><br><br>
+
+					<label for="s3">{{sName3}}</label>
+					<input type="hidden" name="sn3" value={{sName3}}>
+					<input type="date" name="s3" style="margin-left: 50px"><br><br>
+
+					<label for="s4">{{sName4}}</label>
+					<input type="hidden" name="sn4" value={{sName4}}>
+					<input type="date" name="s4" style="margin-left: 50px"><br><br>
+
+					<label for="s5">{{sName5}}</label>
+					<input type="hidden" name="sn5" value={{sName5}}>
+					<input type="date" name="s5" style="margin-left: 50px"><br><br>
+					
+					<input type="submit" value="Submit">
+				{{/if}}
+				</form>
+				
+
+		</div>
+		</header>
+
+
+	</body>
+
+</html>

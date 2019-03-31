@@ -14,7 +14,6 @@
 				  var motherName = document.forms["myForm"]["mName"];
 				  var address = document.forms["myForm"]["address"];
 				  var state = document.forms["myForm"]["state"];
-				  var clgName = document.forms["myForm"]["clgName"];
 				  var phoneNo = document.forms["myForm"]["phoneNo"];
 				  var dbo = document.forms["myForm"]["dob"];
 				  var email = document.forms["myForm"]["emailid"];
@@ -51,12 +50,7 @@
 				        state.focus(); 
 				        return false; 
 				    }
-				    if (clgName.value == "")                               
-				    { 
-				        window.alert("Please enter your College Name."); 
-				        clgName.focus(); 
-				        return false; 
-				    }
+				   
 				    if (phoneNo.value == "")                               
 				    { 
 				        window.alert("Please enter your Phone Number."); 
@@ -130,10 +124,6 @@
 				<input class="inputIndentation" type="text" name="state">
 				<br>
 
-				<p class="oneline">College Name*:</p>
-				<input class="inputIndentation" type="text" name="clgName">
-				<br>
-
 				<p class="oneline">Phone Number*:</p>
 				<input class="inputIndentation" type="text" name="phoneNo">
 				<br>
@@ -143,10 +133,22 @@
 				<br>
 
 
-				<p class="oneline">Sex*:</p>
+				<p class="oneline">Gender*:</p>
 				<input class="inputIndentation" type="radio" name="gender" value="Male" checked="true"> Male<br>
   				<input class="inputIndentation" type="radio" name="gender" value="Female"> Female<br>
  				<input class="inputIndentation" type="radio" name="gender" value="other"> Other<br>
+
+ 				<p class="dropdown">College Name*:</p>
+ 				 <select name="clgName">
+ 				 	<div style="margin-left: 200px;">
+    					<option value="PICT">Pune Institue of Computer Technology</option>
+   						<option value="PVG">PVG</option>
+   						<option value="SP">SP</option>
+   						<option value="AISSMS">AISSMS</option>
+   						<option value="KKV">KKV</option>
+   					</div>	 
+ 				 </select>
+ 				 <br>
 
  				<p class="dropdown">Course Name*:</p>
  				 <select name="dept">

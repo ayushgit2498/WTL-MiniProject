@@ -5,6 +5,9 @@ var studentSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    sno:{
+        type:String
+    },
     name:{
         type:String
     },
@@ -79,6 +82,10 @@ var studentSchema = new mongoose.Schema({
     },
     password:{
         type:String
+    },
+    admin:{
+        type:Boolean,
+        default:false
     }
 });
 

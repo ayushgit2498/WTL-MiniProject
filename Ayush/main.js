@@ -7,6 +7,15 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 //*********************************************************************************** */
 var {Student} = require(process.cwd() + '/Models/student');
+var {Course} = require(process.cwd() + '/Models/course');
+var {ExamForm} = require(process.cwd() + '/Models/examform');
+var colleges = {
+    PICT:['Pune Institue of Computer Technology',4005,4005],
+    PVG:['Pune Vidyarathi Grah',4006,4010],
+    SP:['Sandeep Foundation',4321,4351],        //Sandeep Foundation
+    AISSMS:['AISSMS',4050,4051],
+    KKV:['KK Vagh',4322,4322],   //kkvagh
+}
 const hbs = exphbs.create({ 
     defaultlayout:'main',
     extname:'hbs',
@@ -46,7 +55,6 @@ const hbs = exphbs.create({
 
 
 module.exports = function(app){
-
     const redirectlogin = (req,res,next)=>{
         console.log(req.session);
         
@@ -98,12 +106,24 @@ module.exports = function(app){
                 res.render('logina',{check:false});
             }
             else{
-                console.log(docs);
-                console.log(docs.eno + 'testing');
+                console.log(docs[0].admin);
                 
-                req.session.emailid =  req.body.emailid;
-                req.session.eno = docs[0].eno;
-                return res.redirect('/bh/homea');
+                if(!docs[0].admin){
+                    console.log(`docs ${docs}`);
+                    console.log(docs[0].eno + 'testing');
+                    
+                    req.session.emailid =  req.body.emailid;
+                    req.session.eno = docs[0].eno;
+                    req.session.admin = false;
+                    res.redirect('/bh/homea');
+                }
+                else{
+                    req.session.emailid =  req.body.emailid;
+                    req.session.eno = docs[0].eno;
+                    //req.sesion.admin = true;
+                    res.redirect('/kr/admin');                  
+                }
+
             }
         },(err)=>{
             console.log(err);
@@ -130,6 +150,76 @@ module.exports = function(app){
             res.redirect('/bh/logina');
         })
     });
-    
+
+    app.get(alias+'/examforma', (req,res)=>{
+        Student.find({"eno":req.session.eno}).then((docs)=>{
+            console.log(docs);
+            var docs1 = docs[0];
+            //var temp = docs1.sem1[0].sName;
+            console.log(docs1);
+            
+            Course.find({"dept":docs1.dept}).then((subjects)=>{
+                console.log(subjects);
+                //console.log(temp);
+                var temp = subjects[0];
+                console.log(temp);
+                
+                var subs = temp[`sem${docs1.sem}`];
+                console.log(subs[0].sName);
+                
+                docs1.sno = 'T150054305';
+                docs1.college = colleges[docs1.clgName][0];
+                docs1.centercc = colleges[docs1.clgName][1];
+                docs1.collegec = colleges[docs1.clgName][2]
+                res.render('examform',{docs1,subs});
+            });
+        },(err)=>{
+            console.log(err);
+            
+        });
+    });
+
+    app.post(alias+'/generate', (req,res)=>{
+        Student.find({"eno":req.session.eno}).then((docs)=>{
+            console.log(docs);
+            var docs1 = docs[0];
+            console.log(docs1);
+            
+            Course.find({"dept":docs1.dept}).then((subjects)=>{
+                console.log(subjects);
+                //console.log(temp);
+                var temp = subjects[0];
+                console.log(temp);
+                
+                var subs = temp[`sem${docs1.sem}`];
+                console.log(subs[0].sName);
+                
+                docs1.sno = 'T150054305';
+                docs1.college = colleges[docs1.clgName][0];
+                docs1.centercc = colleges[docs1.clgName][1];
+                docs1.collegec = colleges[docs1.clgName][2];
+                var audit = req.body.audit.slice(2,);
+                var acode = req.body.audit.slice(0,2);
+                console.log(audit);
+                console.log(acode);
+                
+                var context = {
+                    docs1,subs,audit,acode
+                }
+                var temp2 = `sem${docs1.sem}`;
+                var update={};
+                update[temp2]=true;
+                update['audit'] = audit;
+                Student.update({"eno":req.session.eno},{$set:update}).then((docs)=>{
+
+                });
+
+                res.render('hallticket',context);
+            });
+        },(err)=>{
+            console.log(err);
+            
+        });
+    });
 
 };

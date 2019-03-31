@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width,initial-scale-1">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <title >Hall Ticket</title>
+    
+    <style>
+    .jumbotron{
+            background-color: red;
+            color: beige;
+        }
+        .borderdiv{
+            border-style: solid;
+            border-color: aqua;
+            border-width: 2px;
+        }
+        .borderdiv1{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+        }
+        .li1{
+            font-size: large;
+            position: relative;
+            font-weight: bold;
+        }
+      
+        .li1 a:hover{
+        	text-decoration: none;
+            border-bottom: 3px solid cyan;
+            color: black;
+            padding-bottom:0.5vh; 
+        }
+        .main{
+            height:92vh;
+            border:4px solid rgb(175, 164, 164);
+            border-radius: 5px;
+            box-shadow: 3px 3px 3px black;
+            background-color: white;
+        }
+        .footer1{
+            position: fixed;
+            bottom: 0vh;
+            left:0vh;
+            height:6vh;
+            width: 100%;
+            background-color: black;
+            color: white;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        table, th, td ,tr,thead,tbody{
+            border: 1px solid black;
+        }   
+    </style>
+</head>
+<body style="background: linear-gradient(to right, rgba(247,247,247,1) 0%, rgba(246,246,246,1) 7%, rgba(237,237,237,1) 100%);" >
+    <div class="container-fluid" style="overflow: auto;">
+        <div class="container-fluid" style="overflow: auto;">
+                <div class="row d-flex justify-content-center" style="overflow: auto;">
+                        <div class="col-lg-8 col-md-8  main" style="overflow: auto;">
+                                    <span style="font-size: 2rem;position: relative;left:30vh;">SAVITRIBAI PHULE PUNE UNIVERSITY</span><br>
+                                    <img src="/assets/imgs/logo.jpg" style="height:10vh;width:10vh;position: relative;left: 60vh;">
+                                    <div style="width:12vh;height:12vh;border:2px solid black;position: relative;left: 114vh;bottom:3vh;">
+
+                                    </div>
+
+                                    <div class=" row" >
+                                        <div class="col-lg-4 col-md-4 d-flex flex-column  align-items-start justify-content-around   ">
+                                            <span style="font-size:large; font-weight: bold;">Name:  GUPTA AYUSH NARESH</span>
+                                            <span style="font-size:large; font-weight: bold;">Mother's Name: SEEMA GUPTA</span>
+                                            <span style="font-size:large; font-weight: bold;">College: PICT</span>
+
+                                        </div>
+                                            <table class="col-lg-8  col-md-8 table " >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SeatNO</th>
+                                                            <th>CenterCode</th>
+                                                            <th>Collegecode</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                                <td>{{docs1.sno}}</td>
+                                                                <td>{{docs1.centercc}}</td>
+                                                                <td>{{docs1.collegec}}</td>
+            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                    </div>
+                                    <div class="row d-flex justify-content-center" style="overflow: auto;">
+                                            <table class="col-lg-8  table ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sub Code</th>
+                                                            <th>Subject Name</th>
+                                                            <th>Exam Date</th>
+                                                            <th>Exam Time</th>
+                                                            <th colspan="2" style="width:15%;">Sign</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each subs as |value index|}}
+                                                        <tr>
+                                                            <td>{{value.sId}}</td>
+                                                            <td>{{value.sName}}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        {{/each}}
+                                                        <tr>
+                                                            <td>{{acode}}</td>
+                                                            <td>{{audit}}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                    </div>
+                                    <div class="row" style="position:relative;top:7vh;">
+                                            <div class="col-lg-12 d-flex" style="justify-content:space-between">
+                                                    <p style="font-size: 25px;">Signature of Student</p>
+                                                    <p style="font-size: 25px;">College Principle</p>
+                                            </div>
+                                            
+                                        </div>
+   
+                        </div>
+            
+                    </div>
+
+        </div>
+     
+    </div>
+    <footer class="footer1">
+            <span style="position: relative;top:2vh;left:65vh;">Copyright © 2019 Pune University All rights reserved. | ExamOnline - Home |</span>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>

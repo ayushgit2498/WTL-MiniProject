@@ -7,6 +7,16 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 //*********************************************************************************** */
 var {Student} = require(process.cwd() + '/Models/student');
+var {Course} = require(process.cwd() + '/Models/course');
+var {TimeTable} = require(process.cwd() + '/Models/timetable');
+
+var colleges = {
+    'PICT':['Pune Institue of Computer Technology',4005,4005],
+    'PVG':['Pune Vidyarathi Grah',4006,4010],
+    'SP':['Sandeep Foundation',4321,4351],        //Sandeep Foundation
+    'AISSMS':['AISSMS',4050,4051],
+    'KKV':['KK Vagh',4322,4322],   //kkvagh
+}
 //*********************************************************************************** */
 
 
@@ -70,7 +80,7 @@ module.exports = function(app){
             //res.render('index',{Name:result.name});
             req.session.emailid =  req.body.emailid;
             req.session.eno = result.eno;
-            return res.redirect('/bh/homea');
+            res.redirect('/bh/homea');
         },(err)=>{
             console.log('Error Saving student');
             res.status(200).send();
@@ -83,4 +93,107 @@ module.exports = function(app){
         res.render('registration',{});
     });
 
-};
+    app.get(alias+'/course',(req,res)=>{
+        Course.find().then((docs)=>{
+            res.send(docs);
+        },(err)=>{
+            console.log(err);
+            console.log("Error in fetching courses");
+            
+        });
+    });
+
+    app.post(alias+'/course',redirecthome,(req,res)=>{
+        var nfilter = _.pick(req.body,['dept']);
+        var ncourse = new Course(nfilter);
+        for(let i=1;i<=8;i++){
+            var temp = req.body[`sem${i}`];
+            for(let j=0;j<5;j++){
+                ncourse[`sem${i}`].push(temp[j]);
+            }
+        }
+        ncourse.save().then((docs)=>{
+            res.send(docs);
+        },(err)=>{
+            console.log(err);
+            console.log("Error in fetching courses");
+            
+        });
+    });
+
+    app.get(alias+'/admin',(req,res)=>{
+        res.render('admin');
+    });
+
+    app.get(alias+'/admin/timetable',(req,res)=>{
+        // var subs = [{sName:'a',sId:1},{sName:'a',sId:1},{sName:'a',sId:1},{sName:'a',sId:1},{sName:'a',sId:1}];
+        //console.log(subs[0].sName);
+        var sName1 = 'test';
+        var sName2 = 'test';
+        var sName3 = 'test';
+        var sName4 = 'test';
+        var sName5 = 'test';        
+        res.render('timetableAdmin',{filled:false,sName1,sName2,sName3,sName4,sName5});
+    });
+    app.post(alias+'/admin/timetable',(req,res)=>{
+        Course.find({"dept":req.body.dept}).then((subjects)=>{
+            console.log(subjects);
+            var temp = subjects[0];
+            console.log(temp);
+            
+            var subs = temp[`sem${req.body.sem}`];
+            console.log(subs[0].sName);
+            var sName1 = subs[0].sName;
+            var sName2 = subs[1].sName;
+            var sName3 = subs[2].sName;
+            var sName4 = subs[3].sName;
+            var sName5 = subs[4].sName;
+
+            res.render('timetableAdmin',{filled:true,sName1,sName2,sName3,sName4,sName5});
+        });
+    });
+    app.post(alias+'/admin/savetimetable',(req,res)=>{
+        console.log(req.body);
+        var ntimetable = new TimeTable({
+            dept:req.body.dept,
+           sem:req.body.sem,
+           sub1:{
+               sName:req.body.sn1,
+               dexam:req.body.s1
+           },
+           sub2:{
+            sName:req.body.sn2,
+            dexam:req.body.s2
+            },
+            sub3:{
+                sName:req.body.sn3,
+                dexam:req.body.s3
+            },
+            sub4:{
+                sName:req.body.sn4,
+                dexam:req.body.s4
+            },
+            sub5:{
+                sName:req.body.sn5,
+                dexam:req.body.s5
+            }
+        });
+        ntimetable.save().then((docs)=>{
+            res.redirect('/kr/admin');
+        },(err)=>{
+            console.log(err);
+            
+        });
+    });
+
+    app.get(alias+'/timetable',(req,res)=>{
+        res.render('timetableFinal',{filled:false});
+    });
+    app.post(alias+'/timetable',(req,res)=>{
+        TimeTable.find({"dept":req.body.dept,"sem":req.body.sem}).then((docs)=>{
+            var temp = docs[0];
+            res.render('timetableFinal',{filled:true,temp})
+        });
+    });
+
+}
