@@ -1,0 +1,72 @@
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: red;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.container1 {
+  padding: 2px 16px;
+  float: left
+}
+.container2 {
+  padding: 2px 16px;
+  float: right
+}
+
+
+.vertical-menu {
+  width: 250px; /* Set a width if you like */
+  text-align: center;
+
+
+}
+
+.vertical-menu a {
+  background: linear-gradient(to right, rgba(247,247,247,1) 0%, rgba(246,246,246,1) 7%, rgba(237,237,237,1) 100%);
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+  height: 50px;
+  width:100%;
+}
+
+.vertical-menu a:hover {
+  background-color: #eee; 
+  color: black;
+/* Dark grey background on mouse-over */
+} 
+.asd {
+
+  float:left;
+  
+  padding: 5px
+}
+tr:hover {background-color: #eee; 
+  color: black;}

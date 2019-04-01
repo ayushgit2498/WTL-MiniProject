@@ -130,16 +130,29 @@ module.exports = function(app){
             
         });
     });
-    app.get(alias+'/homea',redirectlogin,(req,res)=>{
-        res.render('homea');
+    // app.get(alias+'/homea',redirectlogin,(req,res)=>{
+    //     res.render('sample')
+    // });
+    app.get(alias+'/homea',(req,res)=>{
+        Student.find({"eno":req.session.eno}).then((docs)=>{
+            console.log(docs[0]);
+            
+            Course.find({"dept":docs[0].dept}).then((subjects)=>{
+                var docs1 = docs[0];
+                console.log(subjects);
+                var temp = subjects[0];
+                console.log(temp);
+                console.log(docs1.sem);
+                
+                var subs = temp[`sem${docs1.sem}`];
+                console.log(subs[0].sName);
+                
+                docs1.college = colleges[docs1.clgName][0];
+                res.render('home',{docs1,subs});
+            });
+        });
     });
 
-    // app.get(alias+'/registera',(req,res)=>{
-
-    // });
-    // app.post(alias+'/registera',(req,res)=>{
-
-    // });
 
     app.post(alias+'/logouta',redirectlogin,(req,res)=>{
         req.session.destroy((err)=>{
@@ -167,11 +180,11 @@ module.exports = function(app){
                 var subs = temp[`sem${docs1.sem}`];
                 console.log(subs[0].sName);
                 
-                docs1.sno = 'T150054305';
                 docs1.college = colleges[docs1.clgName][0];
                 docs1.centercc = colleges[docs1.clgName][1];
-                docs1.collegec = colleges[docs1.clgName][2]
-                res.render('examform',{docs1,subs});
+                docs1.collegec = colleges[docs1.clgName][2];
+                var curr = docs1[`sem${docs1.sem}`];
+                res.render('examform',{docs1,subs,curr});
             });
         },(err)=>{
             console.log(err);
@@ -221,5 +234,6 @@ module.exports = function(app){
             
         });
     });
+
 
 };

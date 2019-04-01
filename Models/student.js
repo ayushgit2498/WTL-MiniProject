@@ -58,7 +58,7 @@ var studentSchema = new mongoose.Schema({
         default:false
     },
     sem4:{
-        type:Boolean,
+        type:Boolean,   
         default:false
     },
     sem5:{
@@ -84,6 +84,10 @@ var studentSchema = new mongoose.Schema({
         type:String
     },
     admin:{
+        type:Boolean,
+        default:false
+    },
+    check:{
         type:Boolean,
         default:false
     }

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	 <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <title>Exam</title>
+        <style>
+        
+        .jumbotron{
+            background-color: red;
+            color: beige;
+        }
+        .borderdiv{
+            border-style: solid;
+            border-color: aqua;
+            border-width: 2px;
+        }
+        .borderdiv1{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+        }
+        .li1{
+            float: left;
+            font-size: large;
+            position: relative;
+        	top:5vh;
+        }
+      
+        .li2{
+        	margin-left:7vh;
+            font-weight: bold;
+        }
+        .li2 a:hover{
+        	text-decoration: none;
+            border-bottom: 3px solid cyan;
+            color: black;
+            padding-bottom:0.5vh; 
+        }
+        .li11{
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .li21 a:hover{
+        	text-decoration: none;
+            border-bottom: 3px solid cyan;
+            color: black;
+            padding-bottom:0.5vh; 
+        }
+        .imageedit{
+        	height: 100%;
+        	width:100%;
+        }
+        
+        .en1{
+            height: 77vh;
+        }
+        .nd{
+            height: 77vh;
+            
+        }
+        .footer1{
+            position: fixed;
+            bottom: 0vh;
+            left:0vh;
+            height:6vh;
+            width: 100%;
+            background-color: black;
+        }
+        .enex{
+            height: 77vh;
+            background-color: inherit;
+            /* border:3px solid black; */
+        }
+        .enex1{
+            display: inline-block;
+            position: relative;
+            top:7vh;
+            height: 51vh;
+            width: 40vh  ;
+            right:1.6vh;
+            border:0.5px solid #a6a6a6;
+            box-shadow: 3px 3px 3px black;
+            overflow: hidden;
+        }
+        .decor{
+            font-size: 3vh;
+            height: 15vh;
+            background-color: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .forlist{
+            height: 38vh;
+            background-color: white;
+
+        }
+        .notice{
+            font-size: 3vh;
+            height: 23vh;
+            display: flex;
+            width:100%;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 3px 3px 3px black;
+            background-color: white;
+        }
+        .noticelist{
+            height: 23vh;
+            width: 24vh;
+            
+            background-color: grey;
+        }
+        .alerts{
+            height: 5vh;
+            background-color: grey;
+            border: 3px solid cornsilk;
+            padding: 3vh;
+        }
+        .director{
+            font-size: 3vh;
+            height: 51vh;
+            display: flex;
+            width:100%;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top:2.7vh;
+            background-color: white;
+            box-shadow: 3px 3px 3px black;
+        }
+        .directorlist{
+            height: 51vh;
+            width: 24vh;
+            
+            background-color: grey;
+        }
+        </style>
+    </head>
+    <body style="background: linear-gradient(to right, rgba(247,247,247,1) 0%, rgba(246,246,246,1) 7%, rgba(237,237,237,1) 100%);" >
+       
+       <div class="container-fluid" >
+       		<nav class="navbar">
+       			<div class="container-fluid">
+       			<div class="row"  style="border-bottom:3px solid grey;">
+       				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="height:10vh;">
+       					<img src="/assets/imgs/logo.jpg" class="imageedit">
+       				</div>
+       				
+       			</div>
+       			
+       			</div>
+       		</nav>
+       	
+       </div>
+       
+       {{#if filled}}
+            <h1>{{msg}}</h1>
+       {{else}}
+
+       <form action="/kr/registerfirst" method="post">
+           <input type="text" name="eno" placeholder="Eligibility Number">
+           <input type="submit" value="Submit">
+       </form>
+       {{/if}}
+       <footer class="footer1">
+            <span style="position: relative;top:2vh;left:65vh;color: white">Copyright © 2019 Pune University All rights reserved. | ExamOnline - Home |</span>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+<!-- style="display: flex;align-items: flex-start; -->

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
+
+
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#btnPrint").live("click", function () {
+            var divContents = $("#dvContainer").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>DIV Contents</title> <meta charset="utf-8">  <meta name="viewport" content="width=device-width, initial-scale=1">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> ');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        });
+    </script>
+
+
+
+
+</head>
+<body>
+	<form id="form1" action="/kr/client/result" method="POST" >
+		 <div id="dvContainer" >
+
+<div class="container" style="border-style: double; padding-top: 50px">
+  <input type="text" name="sno">
+  <input type="submit" value="Get Result">
+  {{#if filled}}
+  
+  <h2>RESULT</h2>           
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>SUBJECT</th>
+        <th>MARKS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{sName1}}</td>
+        <td>{{sMarks1}}</td>
+      </tr>
+      <tr>
+        <td>{{sName2}}</td>
+        <td>{{sMarks2}}</td>
+      </tr>
+      <tr>
+        <td>{{sName3}}</td>
+        <td>{{sMarks3}}</td>
+      </tr>
+      <tr>
+        <td>{{sName4}}</td>
+        <td>{{sMarks4}}</td>
+      </tr>
+      <tr>
+        <td>{{sName5}}</td>
+        <td>{{sMarks5}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center;">CGPA : {{cgpa}}</p>
+  <p style="text-align: center;">Result : {{status}}</p>
+  {{/if}}
+ 
+   </div>
+</div>
+</form>
+        
+    
+<div style="text-align: center;">
+    <button type="button" class="button" id="btnPrint" style=" background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;">Print Result</button> 
+</div>    
+
+
+</body>
+</html>
+
