@@ -308,22 +308,22 @@ module.exports = function(app){
     app.post(alias+'/client/result',(req,res)=>{
         console.log(req.body.sno);
         
-        Student.find({"sno":String(req.body.sno)}).then((docs)=>{
-            console.log(docs);
-            Result.find({"sno":String(req.body.sno),"sem":docs[0]['sem']}).then((subjects)=>{
-                console.log(subjects);
-                var temp = subjects[0];
-                console.log(temp);
-                var cgpa ;
-                for(let i=1;i<=5;i++){
-                    cgpa += temp[`sub${i}`].sMarks;
-                }
-                cgpa /= 5;
-                cgpa /= 8.5;
+        // Student.find({"sno":String(req.body.sno)}).then((docs)=>{
+        //     console.log(docs);
+        //     Result.find({"sno":String(req.body.sno),"sem":docs[0]['sem']}).then((subjects)=>{
+        //         console.log(subjects);
+        //         var temp = subjects[0];
+        //         console.log(temp);
+        //         var cgpa ;
+        //         for(let i=1;i<=5;i++){
+        //             cgpa += temp[`sub${i}`].sMarks;
+        //         }
+        //         cgpa /= 5;
+        //         cgpa /= 8.5;
 
-                res.render('result',{filled:true,sName1:temp.sub1.sName,sName2:temp.sub2.sName,sName3:temp.sub3.sName,sName4:temp.sub4.sName,sName5:temp.sub5.sName,sMarks1:temp.sub1.sMarks,sMarks2:temp.sub2.sMarks,sMarks3:temp.sub3.sMarks,sMarks4:temp.sub4.sMarks,sMarks5:temp.sub5.sMarks,cgpa});
-            });
-        });
+        //         res.render('result',{filled:true,sName1:temp.sub1.sName,sName2:temp.sub2.sName,sName3:temp.sub3.sName,sName4:temp.sub4.sName,sName5:temp.sub5.sName,sMarks1:temp.sub1.sMarks,sMarks2:temp.sub2.sMarks,sMarks3:temp.sub3.sMarks,sMarks4:temp.sub4.sMarks,sMarks5:temp.sub5.sMarks,cgpa});
+        //     });
+        // });
         Result.find({"sno":req.body.sno}).then((subjects)=>{
             console.log(subjects);
             var temp = subjects[0];

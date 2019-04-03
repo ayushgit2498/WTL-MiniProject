@@ -2,20 +2,64 @@
 	<head>
 		
 		<link rel="stylesheet" href="/css/timetable.css">
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+		<style>
+ 			.imageedit{
+        	height: 100%;
+        	width:100%;
+        }
+        .li1{
+            font-size: large;
+            position: relative;
+            font-weight: bold;
+        }
+      
+        .li1 a:hover{
+        	text-decoration: none;
+            border-bottom: 3px solid cyan;
+            color: black;
+            padding-bottom:0.5vh; 
+        }
+         .footer1{
+            position: fixed;
+            bottom: 0vh;
+            left:0vh;
+            height:6vh;
+            width: 100%;
+            background-color: black;
+            color: white;
+        }
+        td{
+          font-size: 2.5rem;
+        }
+		</style>
 
 	</head>
 	<body bgcolor="#00BCD4">
 		
-		<header>
-		<ul>
-			<li style="margin-left: 15%;"><a href="#">REGISTER</a></li>
-			<li><a href="/bh/homea">Home</a></li>
-			<li><a href="blank.html">RESULTS</a></li>
-			<li><a href="timetable.xml">TIMETABLE</a></li>
-			<li><a href="blank.html">SYLLABUS</a></li>
-			<li><a href="blank.html">CONTACT</a></li>
-			<li><a href="blank.html">ABOUT US</a></li>
-		</ul>
+<div class="container-fluid">
+        <nav class="navbar ">
+            
+                    <div class="row  col"  style="border-bottom:3px solid grey;">
+                            <div class="col-1">
+                                <img src="/assets/imgs/logo.jpg" class="img-fluid" style="height: 5rem;">
+                            </div>
+                                
+                                 <ul class="d-flex   col align-items-end "  style="list-style-type: none;">  
+                                    <div class="col d-flex justify-content-around">
+																		<li class="li1 li2"><a href="/examdash">EXAMDASH</a></li>
+                                    <li class="li1 li2"><a href="/kr/client/result">RESULTS</a></li>
+                                    <li class="li1 li2"><a href="/kr/timetable">TIMETABLE</a></li>
+                                    <li class="li1 li2"><a href="/maintenance">CONTACT</a></li>
+                                    <li class="li1 li2"><a href="/maintenance">ABOUT US</a></li>
+                                        </div>
+                                         <button class="btn btn-primary btn-md">Logout</button>
+                                        
+                                </ul>
+                        </div>
+            
+        </nav>
+    </div>
 		<div id="outline">
 			<div class="header">
 				<form action="/kr/timetable" method="post">

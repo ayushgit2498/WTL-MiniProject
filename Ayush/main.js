@@ -235,5 +235,8 @@ module.exports = function(app){
         });
     });
 
+    app.get('/maintenance',(req,res)=>{
+        res.render('maintenance');
+    });
 
 };
