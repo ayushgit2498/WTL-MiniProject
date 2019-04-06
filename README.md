@@ -31,7 +31,7 @@ and editing of timetable.
    ```
    node server.js
    ```
-   - In the browser put the url - localhost:3000/examdash to access the website
+   In the browser put the url - localhost:3000/examdash to access the website
    2. **Client side**
       1. When the website will be accessed ,students will see a exam cell dashboard containing links to register,login,results,notice
       2. Register
