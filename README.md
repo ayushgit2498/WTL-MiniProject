@@ -32,14 +32,15 @@ and editing of timetable.
    node server.js
    ```
    In the browser put the url - localhost:3000/examdash to access the website
-   2. **Client side**
+   
+   2. Client side
       1. When the website will be accessed ,students will see a exam cell dashboard containing links to register,login,results,notice
       2. Register
         - The student can register only once through their SPPU eligibility number.
       3. Home Page
         - Once logged in the student can visit timetable,result,examform,notice,syllabus pages by the links provided in navigation 
           panel.
-   3. **Admin Side**
+   3. Admin Side
       1. Add Timetable
         - The admin can add timetable of each semester for every department by visiting the link timetable in admin panel.
       2. Add Result
